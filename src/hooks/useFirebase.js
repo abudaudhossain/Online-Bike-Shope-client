@@ -1,5 +1,5 @@
 import firebaseInitialize from "../Pages/Login/firebase/firebase.initialize";
-import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut, onAuthStateChanged, signInWithEmailAndPassword , updateProfile } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 firebaseInitialize();
@@ -8,12 +8,27 @@ const useFirebase = () => {
     const [error, setError] = useState("")
    const auth = getAuth();
 
-    const registerUser = (email, password) => {
+    const registerUser = (name,email, password) => {
        
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in 
-                setUser(userCredential.user)
+                setError('');
+                const newUser = {
+                    displayName: name,
+                    email: email,
+                    admin: 'No'
+                }
+                saveUserDB(newUser);
+                updateProfile(auth.currentUser, {
+                    displayName: name
+
+                  }).then(() => {
+                    
+                  }).catch((error) => {
+                    
+                  });
+                  setUser(newUser)
                 // ...
             })
             .catch((error) => {
@@ -31,6 +46,7 @@ const useFirebase = () => {
               // https://firebase.google.com/docs/reference/js/firebase.User
     
               setUser(ur)
+              setError('')
                  
               // ...
             } else {
@@ -46,16 +62,27 @@ const useFirebase = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setUser(userCredential.user)
+                setError('')
                 // ...
             })
             .catch((error) => {
                 setError(error.message);
             })  
     }
+    //save user  in database
+    const saveUserDB = (user) =>{
+        fetch('http://localhost:5000/addUser',{
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user) 
+        }).then(res => res.json)
+        .then(data => console.log(data))
+    }
     const logOut = () => {
        
         signOut(auth).then(() => {
             // Sign-out successful.
+        setError('')
             setUser({})
         }).catch((error) => {
             // An error happened.

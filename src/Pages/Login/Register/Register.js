@@ -5,10 +5,9 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../login.png';
 
-const Login = () => {
+const Register = () => {
     const [loginData, setLoginData] = useState({});
-    const {loginUser, error} = useAuth();
-
+    const {registerUser, error} = useAuth();
     const handleOnChange = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -18,20 +17,29 @@ const Login = () => {
 
     }
     console.log(loginData);
+
     const handleLoginSubmit = (e) => {
-        alert("submit")
-        loginUser(loginData.email, loginData.password)
+        if(loginData.password !== loginData.rePassword){
+            alert("Your password is not match")
+            return;
+        }
+        registerUser(loginData.email, loginData.password)
+        
         e.preventDefault();
     }
     return (
         <Box sx={{ flexGrow: 1, my: 5 }}>
             <Typography sx={{ textAlign: "Center", fontWeight: 500 }} variant='h4'>
-                Please Login{error}
+                Please Register Now{error}
             </Typography>
             <Container>
                 <Grid style={{ height: "90vh" }} sx={{ display: 'flex', alignItems: 'center' }} container spacing={4}>
                     <Grid item xs={12} md={6}>
                         <form onSubmit={handleLoginSubmit}>
+                            <TextField
+                                onBlur={handleOnChange}
+                                name="name"
+                                sx={{ width: "100%", my: 1 }} id="name" label="Name" variant="standard" />
                             <TextField
                                 onBlur={handleOnChange}
                                 name="email"
@@ -40,11 +48,15 @@ const Login = () => {
                                 onBlur={handleOnChange}
                                 name="password"
                                 sx={{ width: "100%", my: 1 }} id="password" label="Password" variant="standard" type="password" />
-                            <Button type="submit" sx={{ width: "100%", my: 1 }} variant="contained">Login</Button>
+                            <TextField
+                                onBlur={handleOnChange}
+                                name="rePassword"
+                                sx={{ width: "100%", my: 1 }} id="rePassword" label="RePassword" variant="standard" type="password" />
+                            <Button type="submit" sx={{ width: "100%", my: 1 }} variant="contained">Register</Button>
                         </form>
-                        <NavLink to='/register'>
-                            <Button variant="text">New User? Please Register Now</Button>
-                        </NavLink>
+                        <NavLink to='/login'>
+                    <Button variant="text">Already registered? Please Login </Button>
+                    </NavLink>
                     </Grid>
                     <Grid item xs={12} md={6} >
                         <img src={login} width="100%" alt="constant" />
@@ -55,4 +67,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

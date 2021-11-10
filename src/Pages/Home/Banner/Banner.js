@@ -16,7 +16,7 @@ const Banner = () => {
     return (
         <Box style={bannerBg} sx={{ flexGrow: 1 }}>
             <Container>
-                <Grid style={{ height: "90vh" }} sx={{ display: 'flex', alignItems: 'center' }} container spacing={5}>
+                <Grid style={{ minHeight: "90vh" }} sx={{ display: 'flex', alignItems: 'center' }} container spacing={5}>
                     <Grid item xs={12} md={6}>
                         <Typography sx={{ fontWeight: 500 }} variant='h3'>
                             Online <br />
@@ -30,7 +30,7 @@ const Banner = () => {
                         </Link>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <img src='https://preview.hasthemes.com/exporso-preview/exporso/assets/img/slide/layer_img_1.png' width="100%" alt="chair" />
+                        <img src='https://preview.hasthemes.com/exporso-preview/exporso/assets/img/slide/layer_img_1.png' width="90%" alt="chair" />
                     </Grid>
                 </Grid>
             </Container>

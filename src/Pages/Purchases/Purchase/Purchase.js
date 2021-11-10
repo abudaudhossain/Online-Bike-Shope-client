@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Button, Paper, TextField, Typography } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
+import { useHistory } from 'react-router';
 
 const Purchase = ({ product }) => {
-    const { name, image, description, price } = product;
+    const { name, image, description, price, _id } = product;
     const { user } = useAuth();
     const { displayName, email } = user;
-    const [orderInfo, setOrderInfo] = useState({ displayName, email });
+    const date = new Date().toLocaleDateString();
+    const [orderInfo, setOrderInfo] = useState({ displayName, email, name, image, productId: _id, date });
+    const history = useHistory();
 
 
     const handleOnChange = (e) => {
@@ -19,8 +22,19 @@ const Purchase = ({ product }) => {
     }
     console.log(orderInfo);
     const handleOrderSubmit = (e) => {
-        alert("submit")
-        
+        fetch('http://localhost:5000/addOrder', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderInfo)
+        }).then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    alert("Order is Success");
+                    history.replace("/");
+                }
+            })
+
+
         e.preventDefault();
     }
     return (

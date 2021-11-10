@@ -1,5 +1,6 @@
 import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import { useHistory } from 'react-router';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
@@ -7,7 +8,8 @@ import login from '../../../login.png';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({});
-    const {registerUser, error} = useAuth();
+    const {registerUser, error, user} = useAuth();
+    const history = useHistory();
     const handleOnChange = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -16,8 +18,10 @@ const Register = () => {
         setLoginData(newLoginData)
 
     }
-    console.log(loginData);
 
+    if (user.email) {
+        history.replace("/");
+    }
     const handleLoginSubmit = (e) => {
         if(loginData.password !== loginData.rePassword){
             alert("Your password is not match")

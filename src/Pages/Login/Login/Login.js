@@ -2,12 +2,19 @@ import { Button, Container, Grid, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import login from '../../../login.png';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({});
-    const {loginUser, error} = useAuth();
+    const {loginUser, error, user} = useAuth();
+    const history = useHistory();
+    const location = useLocation();
+    const { from } = location.state || { from: { pathname: "/" } };
+    if (user.email) {
+        history.replace(from);
+    }
 
     const handleOnChange = (e) => {
         const field = e.target.name;
@@ -23,6 +30,8 @@ const Login = () => {
         loginUser(loginData.email, loginData.password)
         e.preventDefault();
     }
+
+  
     return (
         <Box sx={{ flexGrow: 1, my: 5 }}>
             <Typography sx={{ textAlign: "Center", fontWeight: 500 }} variant='h4'>

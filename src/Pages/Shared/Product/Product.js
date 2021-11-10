@@ -6,28 +6,34 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-const Product = () => {
+const Product = ({ product }) => {
+    const { name, image, description, price, _id } = product;
     return (
         <Card sx={{}}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height="300"
-                    image="https://preview.hasthemes.com/exporso-preview/exporso/assets/img/product/2.png"
+                    image={image}
                     alt="green iguana"
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        Lizard
+                        {name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squame reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {description}
+                    </Typography>
+                    <Typography sx={{ my: 1 }} variant="body1" color="text.secondary">
+                        Prices : ৳ {price} lack
                     </Typography>
                 </CardContent>
-                <CardActions>                    
+                <CardActions>
+                    <Link to={`/purchases/${_id}`}>
                         <Button variant="contained">Buy Now</Button>
+                    </Link>
                 </CardActions>
             </CardActionArea>
 

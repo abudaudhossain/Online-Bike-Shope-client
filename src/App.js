@@ -6,13 +6,14 @@ import {
 } from "react-router-dom";
 import './App.css';
 import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import ExploreProducts from "./Pages/ExploreProducts/ExplereProducts/ExploreProducts";
 import Home from "./Pages/Home/Home/Home";
 import Login from "./Pages/Login/Login/Login";
-import Products from "./Pages/Products/Products/Products";
+
 
 function App() {
   return (
-    <div className="App">
+    <div className="">
       <Router>
       <Switch>
           <Route exact path="/">
@@ -22,7 +23,8 @@ function App() {
             <Home />
           </Route>
           <Route path="/products">
-            <Products />
+            <ExploreProducts
+             />
           </Route>
           <Route path="/dashboard">
             <Dashboard />

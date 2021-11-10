@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 const Navigation = () => {
-     const {user, logOut} = useAuth();
+    const { user, logOut } = useAuth();
     // console.log(user);
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -31,12 +31,20 @@ const Navigation = () => {
                     <Link to="/home">
                         <Button color="inherit">Home</Button>
                     </Link>
+                    <Link to="/products">
+                        <Button color="inherit">Explore</Button>
+                    </Link>
                     {
-                        user.email ? <Button onClick={logOut} color="inherit">Logout</Button> :<Link to="/login">
-                        <Button color="inherit">Login</Button>
+                        user.email ? <>
+                            <Link to="/dashboard">
+                                <Button color="inherit">Dashboard</Button>
+                            </Link>
+                            <Button onClick={logOut} color="inherit">Logout</Button>
+                        </> : <Link to="/login">
+                            <Button color="inherit">Login</Button>
                         </Link>
                     }
-                    
+
 
                 </Toolbar>
             </AppBar>

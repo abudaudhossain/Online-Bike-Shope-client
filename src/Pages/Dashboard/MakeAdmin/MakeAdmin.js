@@ -13,13 +13,13 @@ const MakeAdmin = () => {
     const [isChange, setIsChange] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/allUsers')
+        fetch('https://serene-reaches-93418.herokuapp.com/allUsers')
             .then(res => res.json())
             .then(data => setAllUsers(data))
     }, [isChange])
 
     const handleStatesOrder = (id) => {
-        fetch(`http://localhost:5000/updateAdmin/${id}`, {
+        fetch(`https://serene-reaches-93418.herokuapp.com/updateAdmin/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
         })

@@ -71,7 +71,7 @@ const useFirebase = () => {
     }
     //save user  in database
     const saveUserDB = (user) =>{
-        fetch('http://localhost:5000/addUser',{
+        fetch('https://serene-reaches-93418.herokuapp.com/addUser',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(user) 

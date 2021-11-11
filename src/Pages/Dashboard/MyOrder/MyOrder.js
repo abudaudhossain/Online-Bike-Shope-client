@@ -15,7 +15,7 @@ const MyOrder = () => {
     const [isChange, setIsChange] = useState(true)
     const { email } = user;
     useEffect(() => {
-        fetch('http://localhost:5000/myOrder', {
+        fetch('https://serene-reaches-93418.herokuapp.com/myOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })
@@ -27,7 +27,7 @@ const MyOrder = () => {
     const handleDeleteOrder = (id) => {
         const isDelete = window.confirm("Are Your Sure Delete This Item");
         if (isDelete) {
-            fetch(`http://localhost:5000/deleteOrder/${id}`, {
+            fetch(`https://serene-reaches-93418.herokuapp.com/deleteOrder/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
             })

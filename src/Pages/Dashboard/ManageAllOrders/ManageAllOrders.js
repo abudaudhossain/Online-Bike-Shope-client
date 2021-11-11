@@ -13,13 +13,13 @@ const ManageAllAllOrders = () => {
     const [isChange, setIsChange] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/allOrder')
+        fetch('https://serene-reaches-93418.herokuapp.com/allOrder')
             .then(res => res.json())
             .then(data => setAllOrders(data))
     }, [isChange])
 
     const handleStatesOrder = (id) => {
-        fetch(`http://localhost:5000/updateStates/${id}`, {
+        fetch(`https://serene-reaches-93418.herokuapp.com/updateStates/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
         })

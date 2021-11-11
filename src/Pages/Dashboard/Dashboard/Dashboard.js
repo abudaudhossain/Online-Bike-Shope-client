@@ -46,7 +46,7 @@ const Dashboard = (props) => {
     };
 
     React.useEffect(() => {
-        fetch('http://localhost:5000/user', {
+        fetch('https://serene-reaches-93418.herokuapp.com/user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email })

@@ -22,7 +22,7 @@ const Purchase = ({ product }) => {
     }
     console.log(orderInfo);
     const handleOrderSubmit = (e) => {
-        fetch('http://localhost:5000/addOrder', {
+        fetch('https://serene-reaches-93418.herokuapp.com/addOrder', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(orderInfo)

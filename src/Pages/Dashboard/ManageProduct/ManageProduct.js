@@ -14,7 +14,7 @@ const Manageproducts = () => {
     const [isChange, setIsChange] = useState(true)
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://serene-reaches-93418.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [isChange])
@@ -22,7 +22,7 @@ const Manageproducts = () => {
     const handleDeleteProduct = (id) => {
         const isDelete = window.confirm("Are Your Sure Delete This Item");
         if (isDelete) {
-            fetch(`http://localhost:5000/deleteProduct/${id}`, {
+            fetch(`https://serene-reaches-93418.herokuapp.com/deleteProduct/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
             })

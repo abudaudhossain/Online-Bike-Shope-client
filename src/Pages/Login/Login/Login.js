@@ -26,7 +26,6 @@ const Login = () => {
     }
     console.log(loginData);
     const handleLoginSubmit = (e) => {
-        alert("submit")
         loginUser(loginData.email, loginData.password)
         e.preventDefault();
     }

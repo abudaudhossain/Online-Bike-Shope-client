@@ -9,9 +9,9 @@ const AddReview = () => {
     const { user } = useAuth();
     const { displayName, email } = user;
     const date = new Date().toLocaleDateString();
-    const [reviewInfo, setReviewInfo] = useState({ displayName, email, date: date });
     const history = useHistory();
     const [value, setValue] = React.useState(5);
+    const [reviewInfo, setReviewInfo] = useState({ displayName, email, date: date, rating: value });
 
 
     const handleOnChange = (e) => {
@@ -59,7 +59,7 @@ const AddReview = () => {
                         rows={4}
                         required
                         onBlur={handleOnChange}
-                        name="review"
+                        name="description"
                         sx={{ width: "100%", my: 1 }} id="review" label="Add Review" variant="standard" />
 
                     <Button type="submit" sx={{ width: "100%", my: 1 }} variant="contained">Order Now</Button>

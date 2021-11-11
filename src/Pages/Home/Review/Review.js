@@ -1,19 +1,24 @@
 import { Paper, Rating, Typography } from '@mui/material';
 import React from 'react';
 
-const Review = () => {
-    
+const Review = ({review}) => {
+    const {displayName, email, rating, description, date} = review;
     return (
         <div>
             <Paper elevation={3} sx={{m:3, p: 3}}>
             <Typography variant='h4'>
-               Abu Daud
-            </Typography>
-            <Rating name="read-only" value={2} readOnly /><br/>
-            <Typography  variant='p'>
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia fugiat, sunt quod illo hic optio dolore unde dolorum, nam perspiciatis, sapiente saepe eum!
+              {displayName}
             </Typography>
             
+            <Typography variant='body1'>
+              {email}
+            </Typography>
+
+            <Rating name="read-only" value={parseInt(rating)} readOnly /><br/>
+            <Typography  variant='p'>
+              {description}
+            </Typography>
+            <small style={{display: "block", textAlign:"right"}}>{date}</small>
             </Paper>
         </div>
     );

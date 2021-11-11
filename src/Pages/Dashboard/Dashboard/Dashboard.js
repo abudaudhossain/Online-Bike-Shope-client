@@ -24,11 +24,16 @@ import DashboardHome from '../DashboardHome/DashboardHome';
 import MyOrder from '../MyOrder/MyOrder';
 import AddReview from '../AddReview/AddReview';
 import Pay from '../Pay/Pay';
+import { Button } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
+    const { user, logOut } = useAuth();
+    const email = user.email;
     let { path, url } = useRouteMatch();
+    const [isAdmin, setIsAdmin] = React.useState(false);
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -36,27 +41,62 @@ const Dashboard = (props) => {
         setMobileOpen(!mobileOpen);
     };
 
+    React.useEffect(() => {
+        fetch('http://localhost:5000/user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.admin === 'yes') {
+                    setIsAdmin(true);
+                }
+            })
+    }, []);
+    
     const drawer = (
-        <div style={{ background: "#0589e8" , height: "100vh"}}>
+        <div style={{ background: "#0589e8", height: "100vh" }}>
             <Toolbar />
             <Divider />
             <List >
 
-                <Link to={`${url}/pay`}>
-                    <ListItem button >
-                        pay
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/MyOrder`}>
-                    <ListItem button >
-                        My Order
-                    </ListItem>
-                </Link>
-                <Link to={`${url}/review`}>
-                    <ListItem button >
-                        Review
-                    </ListItem>
-                </Link>
+                {
+                    isAdmin ? <>
+                        <Link to={`${url}/pay`}>
+                            <ListItem button >
+                                Add Admin
+                            </ListItem>
+                        </Link>
+                        <Link to={`${url}/MyOrder`}>
+                            <ListItem button >
+                                all Order
+                            </ListItem>
+                        </Link>
+                        <Link to={`${url}/review`}>
+                            <ListItem button >
+                               All user
+                            </ListItem>
+                        </Link>
+                    </> : <>
+                        <Link to={`${url}/pay`}>
+                            <ListItem button >
+                                pay
+                            </ListItem>
+                        </Link>
+                        <Link to={`${url}/MyOrder`}>
+                            <ListItem button >
+                                My Order
+                            </ListItem>
+                        </Link>
+                        <Link to={`${url}/review`}>
+                            <ListItem button >
+                                Review
+                            </ListItem>
+                        </Link>
+                    </>
+
+                }
 
             </List>
             <Divider />
@@ -89,6 +129,16 @@ const Dashboard = (props) => {
                     <Typography variant="h6" noWrap component="div">
                         Online Bike Shop Dashboard
                     </Typography>
+                    {
+                        user.email ? <>
+                            <Link to="/home">
+                                <Button color="inherit">Home</Button>
+                            </Link>
+                            <Button onClick={logOut} color="inherit">Logout</Button>
+                        </> : <Link to="/login">
+                            <Button color="inherit">Login</Button>
+                        </Link>
+                    }
                 </Toolbar>
             </AppBar>
             <Box

@@ -20,7 +20,7 @@ function App() {
   return (
     <AuthProvider className="">
       <Router>
-      <Switch>
+        <Switch>
           <Route exact path="/">
             <Home />
           </Route>
@@ -29,22 +29,22 @@ function App() {
           </Route>
           <Route path="/products">
             <ExploreProducts
-             />
+            />
           </Route>
           <PrivateRoute path="/purchases/:id">
             <Purchases
-             />
+            />
           </PrivateRoute>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/register">
             <Register />
           </Route>
-          
+
         </Switch>
       </Router>
     </AuthProvider>

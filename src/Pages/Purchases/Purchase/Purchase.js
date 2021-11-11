@@ -8,7 +8,7 @@ const Purchase = ({ product }) => {
     const { user } = useAuth();
     const { displayName, email } = user;
     const date = new Date().toLocaleDateString();
-    const [orderInfo, setOrderInfo] = useState({ displayName, email, name, image, productId: _id, date });
+    const [orderInfo, setOrderInfo] = useState({ displayName, email, name, image, productId: _id, date, states: "pending" });
     const history = useHistory();
 
 

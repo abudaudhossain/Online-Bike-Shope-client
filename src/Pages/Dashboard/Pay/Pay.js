@@ -5,7 +5,7 @@ const Pay = () => {
 
     return (
         <div>
-            <h1>This payment</h1>
+            <h1>Payment system coming soon.</h1>
         </div>
     );
 };

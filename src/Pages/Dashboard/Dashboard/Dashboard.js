@@ -26,6 +26,10 @@ import AddReview from '../AddReview/AddReview';
 import Pay from '../Pay/Pay';
 import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import AddAProduct from '../AddAProduct/AddAProduct';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import ManageProduct from '../ManageProduct/ManageProduct';
 
 const drawerWidth = 240;
 
@@ -63,19 +67,24 @@ const Dashboard = (props) => {
 
                 {
                     isAdmin ? <>
-                        <Link to={`${url}/pay`}>
+                        <Link to={`${url}/manageAllOrder`}>
                             <ListItem button >
-                                Add Admin
+                                Manage All Orders
                             </ListItem>
                         </Link>
-                        <Link to={`${url}/MyOrder`}>
+                        <Link to={`${url}/addAProduct`}>
                             <ListItem button >
-                                all Order
+                               Add A Product
                             </ListItem>
                         </Link>
-                        <Link to={`${url}/review`}>
+                        <Link to={`${url}/makeAdmin`}>
                             <ListItem button >
-                               All user
+                             Make Admin
+                            </ListItem>
+                        </Link>
+                        <Link to={`${url}/manageProduct`}>
+                            <ListItem button >
+                             Manage Product
                             </ListItem>
                         </Link>
                     </> : <>
@@ -191,6 +200,18 @@ const Dashboard = (props) => {
                     </Route>
                     <Route path={`${path}/pay`}>
                         <Pay></Pay>
+                    </Route>
+                    <Route path={`${path}/manageAllOrder`}>
+                        <ManageAllOrders></ManageAllOrders>
+                    </Route>
+                    <Route path={`${path}/addAProduct`}>
+                        <AddAProduct></AddAProduct>
+                    </Route>
+                    <Route path={`${path}/makeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </Route>
+                    <Route path={`${path}/manageProduct`}>
+                        <ManageProduct></ManageProduct>
                     </Route>
                 </Switch>
             </Box>

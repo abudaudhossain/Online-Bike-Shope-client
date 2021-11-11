@@ -59,10 +59,10 @@ const MyOrder = () => {
                                 key={order._id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="order">
+                                <TableCell component="th" scope="row">
                                     {order.displayName}
                                 </TableCell>
-                                <TableCell component="th" scope="order">
+                                <TableCell component="th" scope="row">
                                     {order.email}
                                 </TableCell>
                                 <TableCell align="right">{order.name}</TableCell>

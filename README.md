@@ -2,7 +2,7 @@
 This is a versatile and user-friendly Shopify website. The specially designed Shop Page of This is ideal for showcasing products in the most attractive way. Not just Homepage or Shop Page, I use other inbuilt layouts for inner pages such as Explore, DashBoard Page in an equally attractive way. This makes it all easy.
 
 
-## Improtent Link
+## Important Link
 
 My awesome Online Bike Shope Web site live link [Online Bike Shop](https://online-bike-shop.web.app/)
 Also see my  Online Bike Shope Website Code [ Online Bike Shope code](https://github.com/abudaudhossain/Online-Bike-Shope-client)

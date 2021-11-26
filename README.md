@@ -10,10 +10,10 @@ Also see my  Online Bike Shope Website Code [ Online Bike Shope code](https://gi
 
 ## Features and Functionality of My Website:
 * A MERN stack web application with a dynamic services section.
-*Firebase Authentication and registration by email, password, and name
-*An admin can add a new service that will be visible in the services and can make a
-new admin and also,  has a client feedback option. A client can tell us of his observation  *Client Order Product and see All Order
-*Use React Router, Route will be private/protected routes and Use Context API
+* Firebase Authentication and registration by email, password, and name
+* An admin can add a new service that will be visible in the services and can make a
+new admin and also,  has a client feedback option. A client can tell us of his observation  * Client Order Product and see All Order
+* Use React Router, Route will be private/protected routes and Use Context API
 
 Technology: HTML,Material-UI, JavaScript, React, Node, Express.js and MongoDB
 
